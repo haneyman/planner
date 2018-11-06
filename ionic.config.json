@@ -1,0 +1,7 @@
+{
+  "name": "planner",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

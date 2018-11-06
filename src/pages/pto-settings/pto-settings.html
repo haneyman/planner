@@ -1,0 +1,52 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons >
+      <!--<button ion-button navPop></button>-->
+      <!--<button ion-button (click)="console.log('blah')"></button>-->
+    </ion-buttons>
+    <ion-title>PTO Settings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label floating>Starting Date</ion-label>
+    <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="startingDate" name="startingDate"   >
+    </ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Starting PTO Balance (hours)</ion-label>
+    <ion-input [(ngModel)]="startingBalance" name="startingBalance" type="number"  >
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <!--<div>PTO period:</div>-->
+    <ion-label floating>PTO period</ion-label>
+    <br/>
+    <ion-select [(ngModel)]="period">
+      <ion-option value="biweekly">Biweekly (every 2 weeks)</ion-option>
+      <ion-option value="monthly">Monthly</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Hours Earned per PTO Period</ion-label>
+    <ion-input [(ngModel)]="hoursPerPeriod" name="hoursPerPayPeriod" type="number"  ></ion-input>
+  </ion-item>
+<br/>
+<br/>
+<br/>
+  <div>
+    <h5>Summary</h5>
+    I earn <b>{{hoursPerPeriod}}</b> hours of PTO on a <b>{{period}}</b> basis,
+    project my PTO starting on <b>{{startingDate}}</b>.
+    Start with a balance of <b>{{startingBalance}}</b> hours.
+  </div>
+
+</ion-content>

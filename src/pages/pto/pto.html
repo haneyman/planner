@@ -1,0 +1,109 @@
+<!--
+<ion-header>
+  <ion-navbar>
+    <ion-title>PTO Planner</ion-title>
+  </ion-navbar>
+</ion-header>
+-->
+
+
+<ion-header>
+  <ion-navbar hideBackButton="true" color="white">
+<!--    <ion-buttons left>
+      <button ion-button clear color="redPink" (click)="cancelClick()">
+        Cancel
+      </button>
+    </ion-buttons>-->
+    <ion-title>PTO Planner</ion-title>
+    <ion-buttons right>
+      <!--<button ion-button clear [navPush]="settingsPage">Settings</button>-->
+      <button ion-button clear (click)="showSettings()">Settings</button>
+<!--
+      <button ion-button clear color="redPink" (click)="showPTOSettings()" [color]="'whiteTwo'">
+        Settings
+      </button>
+-->
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid >
+    <ion-row class="header">
+      <ion-col col-3>Period</ion-col>
+      <ion-col col-2>Start</ion-col>
+      <ion-col col-2>PTO</ion-col>
+      <ion-col col-2>Earn</ion-col>
+      <ion-col col-2>End</ion-col>
+      <!--<ion-col col-1></ion-col>-->
+    </ion-row>
+    <ion-row class="row" *ngFor="let week of weeks; let i = index" >
+
+      <ion-col col-3>{{week.startDate | date: 'shortDate'}} -<br/>{{week.endDate | date: 'shortDate' }}</ion-col>
+      <ion-col col-2>{{week.startHours}} h<br/> {{week.startDays}} d</ion-col>
+      <ion-col col-2><ion-input style="border: #2d2d2d solid 1px"
+                                [(ngModel)]="week.hoursUsed" name="hoursUsed" type="number"
+                                (focusout)="focusout(week)">
+                    </ion-input> </ion-col>
+      <ion-col col-2>{{week.hoursEarned}}</ion-col>
+      <ion-col col-2>{{week.endHours}} h <br/> {{week.endDays}} d
+        <!--<ion-icon name="add-circle"  (click)="week.showNote=!week.showNote" ></ion-icon>-->
+        <!--<button ion-button small  (click)="week.showNote=!week.showNote" >+ Note</button>-->
+      </ion-col>
+      <ion-col col-1>
+        <ion-icon name="paper"  (click)="week.showNote=!week.showNote" ></ion-icon>
+        <!--<ion-icon name="add-circle"  (click)="week.showNote=!week.showNote" ></ion-icon>-->
+      </ion-col>
+
+<!--
+      <ion-col col-12>
+        <button ion-button small  (click)="week.showNote=!week.showNote" >+ Note</button>
+      </ion-col>
+-->
+
+      <ion-col *ngIf="week.showNote" col-12>
+        <ion-item>
+        <!--<ion-label>Notes</ion-label>-->
+        <!--<ion-input placeholder="notes" style="border: #2d2d2d solid 1px" type="text"-->
+        <ion-input placeholder="Notes"  type="text"
+                                  [(ngModel)]="week.notes" name="notes">
+        </ion-input>
+        </ion-item>
+      </ion-col>
+      <!--<ion-col>Diff from Max: {{week.diffFromMax}}</ion-col>-->
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<!--
+              <thead>
+              <tr>
+                <th style=";width:180px;">Pay Period</th>
+                <th style="width: 130px;">Balance Hours</th>
+                <th style="width: 110px;">Days</th>
+                <th style="width:82px;" >- Planned</th>
+                <%&#45;&#45;<th>+ Earned</th>&#45;&#45;%>
+                <%&#45;&#45;<th>= End Balance</th>&#45;&#45;%>
+                <th style="width: 110px;">Diff from Max</th>
+                <th style=";width:150px;">Note</th>
+                <th style="width:90px;">Paystub?</th>
+              </tr>
+              </thead>
+              <tbody>
+-->
+                <!--<td style="padding: 2px;width:82px;" ><input style="height: 25px;" type="number"  ng-model="week.hoursUsed" ng-blur="hoursUsedBlur()"  class="form-control input-sm input-block-level " /></td>-->
+                <!--<%&#45;&#45;<td >{{week.hoursEarned}}</td>&#45;&#45;%>-->
+                <!--<%&#45;&#45;<td ></td>&#45;&#45;%>-->
+                <!--<td style="width: 110px;"></td>-->
+                <!--<td style="padding: 2px;width:150px;" ><input style="height: 25px;"  ng-model="week.notes"  class="form-control input-sm input-block-level " ng-blur="notesBlur()"  /></td>-->
+                <!--<td style="padding: 0px;width:90px;" ><input style="margin-left: 40%;margin-bottom: 5px;margin-top: 7px;"  type="checkbox" size="5"  ng-model="week.reconciled" Zclass="form-control input-sm input-block-level "  /></td>-->
+              <!--</tr>-->
+              <!--</tbody>-->
+            <!--</table>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</ion-content>-->
+<!---->
