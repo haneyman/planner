@@ -13,6 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {PtoPage} from "../pages/pto/pto";
 import {PtoSettingsPage} from "../pages/pto-settings/pto-settings";
 import { GlobalsProvider } from '../providers/globals/globals';
+import {IonicStorageModule} from "@ionic/storage";
+import {DebugPtoPage} from "../pages/debug-pto/debug-pto";
 
 @NgModule({
   declarations: [
@@ -22,11 +24,13 @@ import { GlobalsProvider } from '../providers/globals/globals';
     HomePage,
     TabsPage,
     PtoPage,
-    PtoSettingsPage
+    PtoSettingsPage,
+    DebugPtoPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,7 +40,8 @@ import { GlobalsProvider } from '../providers/globals/globals';
     HomePage,
     TabsPage,
     PtoPage,
-    PtoSettingsPage
+    PtoSettingsPage,
+      DebugPtoPage
   ],
   providers: [
     StatusBar,

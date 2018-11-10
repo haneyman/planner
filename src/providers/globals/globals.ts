@@ -4,6 +4,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class GlobalsProvider {
 
+  public debug:boolean = true;
+
+    static readonly STORAGE_KEY_PTO_WEEKS = 'planner:pto:weeks';
+
   ptoSettings:any = {
     "startingBalance" : 100,
     "startingDate" : "2018-10-01",

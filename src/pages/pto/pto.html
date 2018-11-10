@@ -9,11 +9,11 @@
 
 <ion-header>
   <ion-navbar hideBackButton="true" color="white">
-<!--    <ion-buttons left>
-      <button ion-button clear color="redPink" (click)="cancelClick()">
-        Cancel
+    <ion-buttons left>
+      <button ion-button clear color="redPink" (click)="showDebug()">
+        DEBUG
       </button>
-    </ion-buttons>-->
+    </ion-buttons>
     <ion-title>PTO Planner</ion-title>
     <ion-buttons right>
       <!--<button ion-button clear [navPush]="settingsPage">Settings</button>-->
@@ -29,7 +29,15 @@
 
 
 <ion-content padding>
-  <ion-grid >
+    <div *ngIf="weeks.length === 0" style="margin-top: 15%">
+        <h2>Woa, you have no data. </h2>
+        <br/>
+        <h4> Go get your PTO balance as of a certain date then
+            Hit "Settings" to get started.</h4>
+    </div>
+
+
+  <ion-grid  *ngIf="weeks.length > 0">
     <ion-row class="header">
       <ion-col col-3>Period</ion-col>
       <ion-col col-2>Start</ion-col>
@@ -42,7 +50,7 @@
 
       <ion-col col-3>{{week.startDate | date: 'shortDate'}} -<br/>{{week.endDate | date: 'shortDate' }}</ion-col>
       <ion-col col-2>{{week.startHours}} h<br/> {{week.startDays}} d</ion-col>
-      <ion-col col-2><ion-input style="border: #2d2d2d solid 1px"
+      <ion-col col-2><ion-input class="input-hours-used"
                                 [(ngModel)]="week.hoursUsed" name="hoursUsed" type="number"
                                 (focusout)="focusout(week)">
                     </ion-input> </ion-col>
@@ -62,11 +70,11 @@
       </ion-col>
 -->
 
-      <ion-col *ngIf="week.showNote" col-12>
-        <ion-item>
+      <ion-col class="col-notes" *ngIf="week.showNote" col-12>
+        <ion-item class="item-notes">
         <!--<ion-label>Notes</ion-label>-->
         <!--<ion-input placeholder="notes" style="border: #2d2d2d solid 1px" type="text"-->
-        <ion-input placeholder="Notes"  type="text"
+        <ion-input class="input-notes" placeholder="Notes"  type="text"
                                   [(ngModel)]="week.notes" name="notes">
         </ion-input>
         </ion-item>
