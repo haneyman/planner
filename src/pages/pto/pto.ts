@@ -150,6 +150,8 @@ export class PtoPage {
             week.hoursEarned = this.globals.ptoSettings.hoursPerPeriod;
         }
 
+        this.weeks[0].notes = "blah blah blah";
+
     }
 
     settingsCallbackFunction = (_params) => {

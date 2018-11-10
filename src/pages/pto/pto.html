@@ -60,7 +60,7 @@
         <!--<button ion-button small  (click)="week.showNote=!week.showNote" >+ Note</button>-->
       </ion-col>
       <ion-col col-1>
-        <ion-icon name="paper"  (click)="week.showNote=!week.showNote" ></ion-icon>
+        <ion-icon name="paper"  *ngIf="!week.notes" (click)="week.showNote=!week.showNote" ></ion-icon>
         <!--<ion-icon name="add-circle"  (click)="week.showNote=!week.showNote" ></ion-icon>-->
       </ion-col>
 
@@ -70,7 +70,7 @@
       </ion-col>
 -->
 
-      <ion-col class="col-notes" *ngIf="week.showNote" col-12>
+      <ion-col class="col-notes" *ngIf="week.showNote || week.notes" col-12>
         <ion-item class="item-notes">
         <!--<ion-label>Notes</ion-label>-->
         <!--<ion-input placeholder="notes" style="border: #2d2d2d solid 1px" type="text"-->
