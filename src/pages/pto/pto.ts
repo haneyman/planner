@@ -34,36 +34,29 @@ export class PtoPage {
     hoursEarn = '?';// = getEarned(daysEmployed);
     maxHours = '?';// = getMax(hoursEarn);
     weeks: any = [];
+    dbData: any;
 
     showNew = false;
     showTable = false;
 
 
     loadData() {
-        this.loadFromDB();
-        /*
-            let weeksJson = this.globals.mockDataWeeks;
-            this.weeks.push(weeksJson["weeks"]["1"]);
-            this.weeks.push(weeksJson["weeks"]["2"]);
-            this.weeks.push(weeksJson["weeks"]["3"]);
-            this.weeks.push(weeksJson["weeks"]["4"]);
-        */
-        if (this.weeks.length > 0) {
-
-            for (let week of this.weeks) {
-                week.showNote = false;
-            }
-
-            this.applySettings();
-
-            this.recalculateWeeks();
-        }
-    }
-
-    loadFromDB() {
         this.storage.get(GlobalsProvider.STORAGE_KEY_PTO_WEEKS).then((val) => {
-            console.log('loadFromDB val:', val);
+            if (val) {
+                console.log('loadFromDB() complete, data found.');
+                this.weeks = JSON.parse(val);
+                // console.log('loadFromDB val:', val);
+                if (this.weeks.length > 0) {
+                    for (let week of this.weeks) {
+                        week.showNote = (week.note && week.note.length > 0);
+                    }
+                    this.recalculateWeeks();
+                }
+            } else {
+                console.log('loadFromDB() complete, no data found.');
+            }
         });
+
         //return new Promise((resolve, reject) => {
         //    resolve(data.val());
         //});
@@ -121,7 +114,11 @@ export class PtoPage {
 
     applySettings() {
         //TODO: currently wipes out preexisting data, need to merge somehow?
-        console.log("applying settings...");
+        this.initializeData();
+    }
+
+    initializeData() {
+        console.log("initializing data...");
         this.weeks = [];
         let week: any = {};
         let prevWeek: any = null;
@@ -150,7 +147,7 @@ export class PtoPage {
             week.hoursEarned = this.globals.ptoSettings.hoursPerPeriod;
         }
 
-        this.weeks[0].notes = "blah blah blah";
+        // this.weeks[0].notes = "blah blah blah";
 
     }
 

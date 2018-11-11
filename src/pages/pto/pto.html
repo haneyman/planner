@@ -29,11 +29,13 @@
 
 
 <ion-content padding>
-    <div *ngIf="weeks.length === 0" style="margin-top: 15%">
+    <div id="div-nodata" *ngIf="weeks.length === 0" style="margin-top: 15%">
         <h2>Woa, you have no data. </h2>
         <br/>
-        <h4> Go get your PTO balance as of a certain date then
-            Hit "Settings" to get started.</h4>
+        <ol id="list-nodata-steps">
+            <li>Get your PTO balance as of a certain date.</li>
+            <li>Hit "Settings" to get started.</li>
+        </ol>
     </div>
     <ion-toolbar   *ngIf="weeks.length > 0" class="header-toolbar">
 <!--        <ion-buttons start>

@@ -76,3 +76,6 @@ typings/
 
 /www/
 /.sourcemaps/
+/resources/
+/platforms/
+/plugins/
