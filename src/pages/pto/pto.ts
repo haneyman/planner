@@ -56,10 +56,6 @@ export class PtoPage {
                 console.log('loadFromDB() complete, no data found.');
             }
         });
-
-        //return new Promise((resolve, reject) => {
-        //    resolve(data.val());
-        //});
     };
 
     saveToDB() {
