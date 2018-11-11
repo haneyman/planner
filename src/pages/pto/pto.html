@@ -35,17 +35,31 @@
         <h4> Go get your PTO balance as of a certain date then
             Hit "Settings" to get started.</h4>
     </div>
+    <ion-toolbar   *ngIf="weeks.length > 0" class="header-toolbar">
+<!--        <ion-buttons start>
+            <button ion-button icon-only color="royal">
+                <ion-icon name="search"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>Send To...</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only color="royal">
+                <ion-icon name="person-add"></ion-icon>
+            </button>
+        </ion-buttons>-->
+        <ion-grid class="header-grid">
+            <ion-row class="header-row">
+                <ion-col col-3 style="width: 50px">Period</ion-col>
+                <ion-col col-2>Start</ion-col>
+                <ion-col col-2>PTO</ion-col>
+                <ion-col col-2>Earn</ion-col>
+                <ion-col col-2>End</ion-col>
+                <ion-col col-1></ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+  <ion-grid class="grid-weeks" *ngIf="weeks.length > 0">
 
-
-  <ion-grid  *ngIf="weeks.length > 0">
-    <ion-row class="header">
-      <ion-col col-3>Period</ion-col>
-      <ion-col col-2>Start</ion-col>
-      <ion-col col-2>PTO</ion-col>
-      <ion-col col-2>Earn</ion-col>
-      <ion-col col-2>End</ion-col>
-      <!--<ion-col col-1></ion-col>-->
-    </ion-row>
     <ion-row class="row" *ngFor="let week of weeks; let i = index" >
 
       <ion-col col-3>{{week.startDate | date: 'shortDate'}} -<br/>{{week.endDate | date: 'shortDate' }}</ion-col>
@@ -60,7 +74,7 @@
         <!--<button ion-button small  (click)="week.showNote=!week.showNote" >+ Note</button>-->
       </ion-col>
       <ion-col col-1>
-        <ion-icon name="paper"  *ngIf="!week.notes" (click)="week.showNote=!week.showNote" ></ion-icon>
+        <ion-icon class="chatbox-icon" name="chatboxes"  *ngIf="!week.notes" (click)="week.showNote=!week.showNote" ></ion-icon>
         <!--<ion-icon name="add-circle"  (click)="week.showNote=!week.showNote" ></ion-icon>-->
       </ion-col>
 
@@ -75,7 +89,7 @@
         <!--<ion-label>Notes</ion-label>-->
         <!--<ion-input placeholder="notes" style="border: #2d2d2d solid 1px" type="text"-->
         <ion-input class="input-notes" placeholder="Notes"  type="text"
-                                  [(ngModel)]="week.notes" name="notes">
+                   (focusout)="focusout(week)"   [(ngModel)]="week.notes" name="notes">
         </ion-input>
         </ion-item>
       </ion-col>
