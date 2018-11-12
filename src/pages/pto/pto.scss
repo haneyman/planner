@@ -42,6 +42,7 @@ page-pto {
     border-bottom: #8f8f8f solid 1px;
     ion-col {
       margin-top: 5px;
+      padding: 0 0 5px 0;
     }
   }
 
@@ -55,11 +56,12 @@ page-pto {
   .col-notes {
     margin: 0 0px 0px 0px !important;
     padding: 0px 0 0px 0 !important;
-    height: 35px;
+    //height: 35px;
   }
 
   .item-notes {
     min-height: auto;
+    margin-bottom: 3px;
     &.input-has-focus {
       border: 0.55px solid #c8c7cc;
       padding: 5px;

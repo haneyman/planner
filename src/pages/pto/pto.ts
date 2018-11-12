@@ -93,9 +93,13 @@ export class PtoPage {
         if (prevWeek) {
             week.startHours = prevWeek.endHours;
         }
-        week.startDays = Math.round(week.startHours / 8);
-        week.endHours = week.startHours - week.hoursUsed + week.hoursEarned;
-        week.endDays = Math.round(week.endHours / 8);
+        week.startHours = Number(week.startHours);
+        week.hoursUsed = Number(week.hoursUsed);
+        week.hoursEarned = Number(week.hoursEarned);
+
+        week.startDays = Math.round(week.startHours / 8 * 100) / 100;
+        week.endHours = Math.round((week.startHours - week.hoursUsed + week.hoursEarned) * 100) / 100;
+        week.endDays = Math.round(week.endHours / 8 * 100) / 100;
 
         /*
             week.diffFromMax = 0;
@@ -111,6 +115,7 @@ export class PtoPage {
     applySettings() {
         //TODO: currently wipes out preexisting data, need to merge somehow?
         this.initializeData();
+        this.saveToDB();
     }
 
     initializeData() {
