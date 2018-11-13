@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.planbreeze" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.planbreeze" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>PlanBreeze</name>
     <description>PlanBreeze - Makes planning a breeze.</description>
     <author email="support@planbreeze.com" href="http://planbreeze.com/">Kopasetic Software</author>

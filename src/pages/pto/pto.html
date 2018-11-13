@@ -1,12 +1,3 @@
-<!--
-<ion-header>
-  <ion-navbar>
-    <ion-title>PTO Planner</ion-title>
-  </ion-navbar>
-</ion-header>
--->
-
-
 <ion-header>
   <ion-navbar hideBackButton="true" color="white">
     <ion-buttons left>
@@ -14,7 +5,7 @@
         DEBUG
       </button>
     </ion-buttons>
-    <ion-title>PTO Planner</ion-title>
+    <ion-title>Vacation Planner</ion-title>
     <ion-buttons right>
       <!--<button ion-button clear [navPush]="settingsPage">Settings</button>-->
       <button ion-button clear (click)="showSettings()">Setup</button>
@@ -62,7 +53,8 @@
     </ion-toolbar>
   <ion-grid class="grid-weeks" *ngIf="weeks.length > 0">
 
-    <ion-row class="row" *ngFor="let week of weeks; let i = index" >
+    <ion-row class="row" *ngFor="let week of weeks; let i = index"
+             [ngClass]="(i%2 == 0) ? 'stripe' : ''">
 
       <ion-col col-3>{{week.startDate | date: 'shortDate'}} -<br/>{{week.endDate | date: 'shortDate' }}</ion-col>
       <ion-col col-2>{{week.startHours}} h<br/> {{week.startDays}} d</ion-col>
@@ -86,8 +78,9 @@
       </ion-col>
 -->
 
-      <ion-col class="col-notes" *ngIf="week.showNote || week.notes" col-12>
-        <ion-item class="item-notes">
+      <ion-col class="col-notes" *ngIf="week.showNote || week.notes" col-12
+               >
+        <ion-item class="item-notes" [ngClass]="(i%2 == 0) ? 'stripe' : ''">
         <!--<ion-label>Notes</ion-label>-->
         <!--<ion-input placeholder="notes" style="border: #2d2d2d solid 1px" type="text"-->
         <ion-input class="input-notes" placeholder="Notes"  type="text"

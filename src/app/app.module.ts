@@ -15,6 +15,8 @@ import {PtoSettingsPage} from "../pages/pto-settings/pto-settings";
 import { GlobalsProvider } from '../providers/globals/globals';
 import {IonicStorageModule} from "@ionic/storage";
 import {DebugPtoPage} from "../pages/debug-pto/debug-pto";
+import {EventsPage} from "../pages/events/events";
+import {CalendarPage} from "../pages/calendar/calendar";
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import {DebugPtoPage} from "../pages/debug-pto/debug-pto";
     TabsPage,
     PtoPage,
     PtoSettingsPage,
-    DebugPtoPage
+    DebugPtoPage,
+      EventsPage,
+      CalendarPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,9 @@ import {DebugPtoPage} from "../pages/debug-pto/debug-pto";
     TabsPage,
     PtoPage,
     PtoSettingsPage,
-      DebugPtoPage
+      DebugPtoPage,
+      EventsPage,
+      CalendarPage
   ],
   providers: [
     StatusBar,
