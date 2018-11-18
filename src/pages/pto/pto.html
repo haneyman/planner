@@ -1,10 +1,5 @@
 <ion-header>
   <ion-navbar hideBackButton="true" color="white">
-    <ion-buttons left>
-      <button ion-button clear color="redPink" (click)="showDebug()">
-        DEBUG
-      </button>
-    </ion-buttons>
     <ion-title>Vacation Planner</ion-title>
     <ion-buttons right>
       <!--<button ion-button clear [navPush]="settingsPage">Settings</button>-->
@@ -24,8 +19,8 @@
         <h2>Woa, you have no data. </h2>
         <br/>
         <ol id="list-nodata-steps">
-            <li>Get your PTO balance as of a certain date.</li>
-            <li>Hit "Settings" to get started.</li>
+            <li>Get your vacation or PTO balance as of a certain date.</li>
+            <li>Hit "Setup" to get started.</li>
         </ol>
     </div>
     <ion-toolbar   *ngIf="weeks.length > 0" class="header-toolbar">

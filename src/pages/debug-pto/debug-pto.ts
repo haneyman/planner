@@ -30,6 +30,7 @@ export class DebugPtoPage {
         this.storage.remove(GlobalsProvider.STORAGE_KEY_PTO_WEEKS).then((val) => {
             console.log('loadFromDB val:', val);
         });
-
+        // this.appCtrl.getRootNav().setRoot(yourcomponent);
+        window.location.reload()
     }
 }

@@ -6,12 +6,13 @@ export class GlobalsProvider {
 
   public debug:boolean = true;
 
-    static readonly STORAGE_KEY_PTO_WEEKS = 'planner:pto:weeks';
+    static readonly STORAGE_KEY_PTO_WEEKS   = 'planner:pto:weeks';
+    static readonly STORAGE_KEY_EVENTS      = 'planner:events';
 
   ptoSettings:any = {
     "startingBalance" : 100,
     "startingDate" : "2018-10-01",
-    "hoursPerPeriod": 10,
+    "hoursPerPeriod": 0,
     "period" : "biweekly"
   };
 

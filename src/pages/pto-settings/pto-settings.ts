@@ -28,15 +28,17 @@ export class PtoSettingsPage {
   ionViewDidLoad() {
     this.startingBalance  = this.globals.ptoSettings.startingBalance;
     this.startingDate     = this.globals.ptoSettings.startingDate;
-    this.hoursPerPeriod = this.globals.ptoSettings.hoursPerPeriod;
+    this.hoursPerPeriod   = this.globals.ptoSettings.hoursPerPeriod;
+    if (!this.hoursPerPeriod || this.hoursPerPeriod == 0)
+        this.hoursPerPeriod = 0;
     this.period           = this.globals.ptoSettings.period;
   }
 
   ionViewWillLeave() {
     // console.log("starting date:" + this.startingDate);
-    this.globals.ptoSettings.startingBalance = this.startingBalance;
-    this.globals.ptoSettings.startingDate    = this.startingDate;
-    this.globals.ptoSettings.hoursPerPeriod = this.hoursPerPeriod;
+    this.globals.ptoSettings.startingBalance    = this.startingBalance;
+    this.globals.ptoSettings.startingDate       = this.startingDate;
+    this.globals.ptoSettings.hoursPerPeriod     = this.hoursPerPeriod;
     this.globals.ptoSettings.period             = this.period;
     let param = "nada";
     this.callback(param).then(()=>{

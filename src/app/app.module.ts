@@ -54,6 +54,7 @@ import {CalendarPage} from "../pages/calendar/calendar";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     GlobalsProvider
+    // , DatePicker
   ]
 })
 export class AppModule {}

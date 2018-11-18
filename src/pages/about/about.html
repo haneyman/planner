@@ -1,11 +1,33 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      PTO
+      About
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+    <ion-item-group>
+        <ion-list-header class="list-divider">Version</ion-list-header>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.0.3 20181115</p>
+    </ion-item-group>
+    <br/>
+    <ion-item-group>
+        <ion-list-header class="list-divider">FEEDBACK</ion-list-header>
+        <button ion-item (click)="sendEmail()">Contact Us</button>
+        <!--<button ion-item>Rate Heycoach</button>-->
+    </ion-item-group>
+    <br/>
+    <ion-item-group>
+        <ion-list-header class="list-divider">Contribute</ion-list-header>
+        <button ion-item >Contribute</button>
+    </ion-item-group>
+
+    <ion-item-group>
+        <button ion-button clear color="redPink" (click)="showDebug()">
+            DEBUG
+        </button>
+    </ion-item-group>
+
 
 </ion-content>

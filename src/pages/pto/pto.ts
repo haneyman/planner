@@ -4,7 +4,7 @@ import {PtoSettingsPage} from "../pto-settings/pto-settings";
 import {GlobalsProvider} from "../../providers/globals/globals";
 import {Storage} from '@ionic/storage';
 import {DebugPtoPage} from "../debug-pto/debug-pto";
-
+import * as moment from 'moment';
 
 @IonicPage()
 @Component({
@@ -52,6 +52,9 @@ export class PtoPage {
                     }
                     this.recalculateWeeks();
                 }
+                this.globals.ptoSettings.startingDate       = this.weeks[0].startDate;
+                this.globals.ptoSettings.hoursPerPeriod     = this.weeks[0].hoursEarn;
+                this.globals.ptoSettings.startingBalance    = this.weeks[0].startHours;
             } else {
                 console.log('loadFromDB() complete, no data found.');
             }
@@ -114,7 +117,24 @@ export class PtoPage {
 
     applySettings() {
         //TODO: currently wipes out preexisting data, need to merge somehow?
-        this.initializeData();
+        let prevWeeks: any = [];
+        if (this.weeks && this.weeks.length > 0) {
+            //existing data, save off
+            prevWeeks = this.weeks;
+            this.initializeData();
+            for (let week of this.weeks) {
+                for (let prevWeek of prevWeeks) {
+                    if (week.startDate == prevWeek.startDate) {
+    //                    if (prevWeek.startDate)
+    //                        week.hoursUsed = prevWeek.hoursUsed;
+    //                    if (prevWeek.notes)
+    //                        week.notes = prevWeek.notes;
+                    }
+                }
+            }
+        } else {
+            this.initializeData();
+        }
         this.saveToDB();
     }
 
@@ -124,14 +144,15 @@ export class PtoPage {
         let week: any = {};
         let prevWeek: any = null;
 
-        week.startDate = new Date(this.globals.ptoSettings.startingDate);
+        week.startDate = moment(this.globals.ptoSettings.startingDate).toDate();
+        //week.startDate = new Date(this.globals.ptoSettings.startingDate + 'T00:00:00');
         week.startHours = this.globals.ptoSettings.startingBalance;
         week.hoursEarned = this.globals.ptoSettings.hoursPerPeriod;
 
         for (let i = 0; i < 24; i++) {
             if (this.globals.ptoSettings.period == "biweekly") {
                 week.endDate = new Date(week.startDate);
-                week.endDate.setDate(week.endDate.getDate() + 14);
+                week.endDate.setDate(week.endDate.getDate() + 13);
             } else if (this.globals.ptoSettings.period == "biweekly") {
                 week.endDate = new Date(week.startDate);
                 week.endDate.setDate(week.endDate.getMonth() + 1);
@@ -142,7 +163,7 @@ export class PtoPage {
             this.weeks.push(week);
             prevWeek = week;
             week = new Object();
-            week.startDate = prevWeek.endDate;
+            week.startDate = new Date(prevWeek.endDate);
             week.startDate.setDate(prevWeek.endDate.getDate() + 1);
             week.startHours = prevWeek.endHours;
             week.hoursEarned = this.globals.ptoSettings.hoursPerPeriod;

@@ -6,55 +6,113 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>events</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Events</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
     <ion-fab top right edge>
-        <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+        <button ion-fab mini>
+            <ion-icon name="add"></ion-icon>
+        </button>
         <ion-fab-list>
-            <button ion-fab ><ion-icon name="logo-facebook"></ion-icon></button>
-            <button ion-fab (click)="buttonMusic()"><ion-icon name="musical-notes"></ion-icon></button>
-            <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-            <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-            <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+            <button ion-fab>
+                <ion-icon name="logo-facebook"></ion-icon>
+            </button>
+            <button ion-fab (click)="buttonMusic()">
+                <ion-icon name="musical-notes"></ion-icon>
+            </button>
+            <button ion-fab>
+                <ion-icon name="logo-twitter"></ion-icon>
+            </button>
+            <button ion-fab>
+                <ion-icon name="logo-vimeo"></ion-icon>
+            </button>
+            <button ion-fab>
+                <ion-icon name="logo-googleplus"></ion-icon>
+            </button>
         </ion-fab-list>
     </ion-fab>
-<!--
     <ion-fab right bottom>
-        <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+        <button ion-fab color="light">
+            <ion-icon name="arrow-dropleft"></ion-icon>
+        </button>
         <ion-fab-list side="left">
-            <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-            <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-            <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-            <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+            <button ion-fab>
+                <ion-icon name="logo-facebook"></ion-icon>
+            </button>
+            <button ion-fab>
+                <ion-icon name="logo-twitter"></ion-icon>
+            </button>
+            <button ion-fab>
+                <ion-icon name="logo-vimeo"></ion-icon>
+            </button>
+            <button ion-fab>
+                <ion-icon name="logo-googleplus"></ion-icon>
+            </button>
         </ion-fab-list>
     </ion-fab>
--->
+    <div id="div-nodata" *ngIf="events.length === 0" style="margin-top: 15%">
+        <h2>Woa, you have no events. </h2>
+        <br/>
+        <ol id="list-nodata-steps">
+            <li>Hit the Circle with the plus to start adding events.</li>
+        </ol>
+    </div>
+    <div id="cards" *ngIf="events.length > 0">
+        <ion-card *ngFor="let event of events">
+            <ion-card-header style="background-color: lightblue;">
+                Music Event
+                <!--{{event.title}}-->
+            </ion-card-header>
+            <ion-card-content>
+                <ion-item>
+                    <!--<ion-label stacked>Title</ion-label>-->
+                    <ion-input class="input-event-title" placeholder="Title" type="text"
+                               (focusout)="focusout(event)" [(ngModel)]="event.title" name="title">
+                    </ion-input>
+                </ion-item>
 
-    <ion-card *ngFor="let event of events">
-        <ion-card-header>
-            <ion-input class="input-event-title" placeholder="Title"  type="text"
-                       (focusout)="focusout(event)"   [(ngModel)]="event.title" name="title">
-            </ion-input>
-            <!--{{event.title}}-->
-        </ion-card-header>
-        <ion-card-content>
-            <ion-input class="input-event-note" placeholder="Note"  type="text"
-                       (focusout)="focusout(event)"   [(ngModel)]="event.note" name="note">
-            </ion-input>
-            <ion-input class="input-event-date" placeholder="Date"  type="date"
-                       (focusout)="focusout(event)"   [(ngModel)]="event.date" name="date">
-            </ion-input>
-
-            <!--{{event.description}}-->
-        </ion-card-content>
-    </ion-card>
-
+                <ion-item>
+                    <!--<ion-label stacked>Location</ion-label>-->
+                    <ion-input class="input-event-location" placeholder="Location" type="text"
+                               (focusout)="focusout(event)" [(ngModel)]="event.location" name="location">
+                    </ion-input>
+                </ion-item>
+                <ion-item>
+                    <!--<ion-label stacked>Notes</ion-label>-->
+                    <ion-input class="input-event-note" placeholder="Note" type="text"
+                               (focusout)="focusout(event)" [(ngModel)]="event.note" name="note">
+                    </ion-input>
+                </ion-item>
+                <!--
+                                <div id="event-date" (click)="showDatePicker(event)">
+                                    Date:{{event.date}}
+                                </div>
+                -->
+                <!--
+                                <ion-input class="input-event-date" placeholder="Date"  type="date"
+                                           (focusout)="focusout(event)"   [(ngModel)]="event.date" name="date">
+                                </ion-input>
+                -->
+                <ion-item>
+                    <!--<ion-label stacked>Date</ion-label>-->
+                    <ion-datetime placeholder="Date" class="date-input-box" min="{{todayDate}}" displayFormat="MM/DD/YY"
+                                  pickerFormat="MMM DD YYYY" [(ngModel)]="event.date"
+                                  (ionChange)="eventDateChange(event)">
+                    </ion-datetime>
+                </ion-item>
+                <!--
+                            <ion-datetime displayFormat="MM/DD/YYYY" placeholder="Date" [(ngModel)]="event.date" name="date"   >
+                            </ion-datetime>
+                -->
+                <!--{{event.description}}-->
+            </ion-card-content>
+        </ion-card>
+    </div>
 
 
 </ion-content>

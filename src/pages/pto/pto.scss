@@ -34,7 +34,11 @@ page-pto {
     //background: #444444;
   }
   .grid-weeks {
-    margin-top: 40px;
+    //margin-top: 40px;
+//    @media only screen and (min-device-width: 375px) and (min-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+      margin-top: 50px;
+//    }
+
   }
 
   .row {
@@ -83,7 +87,7 @@ page-pto {
   .input-notes .text-input{
     margin: 0 ;
     padding: 0;
-    color:  #007069;
+    color: #6b4204;
   }
   .chatbox-icon {
     margin-top: 8px;
