@@ -8,7 +8,12 @@
     "start": "ionic-app-scripts serve",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint"
+    "lint": "ionic-app-scripts lint",
+    "ios7": "ionic cordova run ios --target=\"iPhone-7\" --livereload --consolelog",
+    "ios8": "ionic cordova run ios --target=\"iPhone-8\" --livereload --consolelogs",
+    "ios8Plus": "ionic cordova run ios --target=\"iPhone-8-Plus\" --livereload --consolelogs",
+    "iosx": "ionic cordova run ios --target=\"iPhone-X\" --livereload --consolelogs",
+    "android": "ionic cordova run android --livereload --consolelogs"
   },
   "dependencies": {
     "@angular/animations": "5.2.11",
@@ -20,12 +25,14 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@ionic-native/calendar": "^4.17.0",
     "@ionic-native/core": "~4.15.0",
     "@ionic-native/splash-screen": "~4.15.0",
     "@ionic-native/status-bar": "~4.15.0",
     "@ionic/storage": "^2.2.0",
     "cordova-android": "7.0.0",
     "cordova-ios": "4.5.5",
+    "cordova-plugin-calendar": "^5.1.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
     "cordova-plugin-ionic-webview": "^2.2.3",
@@ -53,7 +60,10 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-calendar": {
+        "CALENDAR_USAGE_DESCRIPTION": " "
+      }
     },
     "platforms": [
       "android",

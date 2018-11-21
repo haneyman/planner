@@ -9,6 +9,8 @@ export class GlobalsProvider {
     static readonly STORAGE_KEY_PTO_WEEKS   = 'planner:pto:weeks';
     static readonly STORAGE_KEY_EVENTS      = 'planner:events';
 
+    calendars: any;
+
   ptoSettings:any = {
     "startingBalance" : 100,
     "startingDate" : "2018-10-01",

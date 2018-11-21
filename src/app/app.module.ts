@@ -17,6 +17,8 @@ import {IonicStorageModule} from "@ionic/storage";
 import {DebugPtoPage} from "../pages/debug-pto/debug-pto";
 import {EventsPage} from "../pages/events/events";
 import {CalendarPage} from "../pages/calendar/calendar";
+import {Calendar} from "@ionic-native/calendar";
+import {CalendarSetupPage} from "../pages/calendar-setup/calendar-setup";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import {CalendarPage} from "../pages/calendar/calendar";
     PtoSettingsPage,
     DebugPtoPage,
       EventsPage,
-      CalendarPage
+      CalendarPage,
+      CalendarSetupPage
   ],
   imports: [
     BrowserModule,
@@ -47,13 +50,15 @@ import {CalendarPage} from "../pages/calendar/calendar";
     PtoSettingsPage,
       DebugPtoPage,
       EventsPage,
-      CalendarPage
+      CalendarPage,
+      CalendarSetupPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    GlobalsProvider
+    GlobalsProvider,
+     Calendar
     // , DatePicker
   ]
 })
