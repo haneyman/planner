@@ -13,7 +13,9 @@
     "ios8": "ionic cordova run ios --target=\"iPhone-8\" --livereload --consolelogs",
     "ios8Plus": "ionic cordova run ios --target=\"iPhone-8-Plus\" --livereload --consolelogs",
     "iosx": "ionic cordova run ios --target=\"iPhone-X\" --livereload --consolelogs",
-    "android": "ionic cordova run android --livereload --consolelogs"
+    "android": "ionic cordova run android --livereload --consolelogs",
+    "iosPREV": "ionic cordova emulate ios -- --buildFlag=\"-UseModernBuildSystem=0\" --livereload --consolelogs",
+    "ios": "ionic cordova run ios --l -- --buildFlag=\"-UseModernBuildSystem=0\"  --consolelogs"
   },
   "dependencies": {
     "@angular/animations": "5.2.11",

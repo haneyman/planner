@@ -14,4 +14,9 @@ page-events {
   .input-event-date {
     margin: 5px 0 5px 0;
   }
+
+  ion-fab[bottom][edge] {
+    bottom: 10px !important;
+  }
+
 }

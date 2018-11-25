@@ -14,44 +14,19 @@
 
 
 <ion-content padding>
-    <ion-fab top right edge>
+    <ion-fab bottom right >
         <button ion-fab mini>
             <ion-icon name="add"></ion-icon>
         </button>
-        <ion-fab-list>
-            <button ion-fab>
-                <ion-icon name="logo-facebook"></ion-icon>
-            </button>
-            <button ion-fab (click)="buttonMusic()">
+        <ion-fab-list side="left">
+            <button ion-fab (click)="buttonAddEvent('music')">
                 <ion-icon name="musical-notes"></ion-icon>
             </button>
-            <button ion-fab>
-                <ion-icon name="logo-twitter"></ion-icon>
+            <button ion-fab (click)="buttonAddEvent('sports')">
+                <ion-icon name="american-football"></ion-icon>
             </button>
-            <button ion-fab>
-                <ion-icon name="logo-vimeo"></ion-icon>
-            </button>
-            <button ion-fab>
-                <ion-icon name="logo-googleplus"></ion-icon>
-            </button>
-        </ion-fab-list>
-    </ion-fab>
-    <ion-fab right bottom>
-        <button ion-fab color="light">
-            <ion-icon name="arrow-dropleft"></ion-icon>
-        </button>
-        <ion-fab-list side="left">
-            <button ion-fab>
-                <ion-icon name="logo-facebook"></ion-icon>
-            </button>
-            <button ion-fab>
-                <ion-icon name="logo-twitter"></ion-icon>
-            </button>
-            <button ion-fab>
-                <ion-icon name="logo-vimeo"></ion-icon>
-            </button>
-            <button ion-fab>
-                <ion-icon name="logo-googleplus"></ion-icon>
+            <button ion-fab (click)="buttonAddEvent('social')">
+                <ion-icon name="contacts"></ion-icon>
             </button>
         </ion-fab-list>
     </ion-fab>
@@ -88,6 +63,8 @@
                                (focusout)="focusout(event)" [(ngModel)]="event.note" name="note">
                     </ion-input>
                 </ion-item>
+
+                <!--dtstart, dtend and eventLocation-->
                 <!--
                                 <div id="event-date" (click)="showDatePicker(event)">
                                     Date:{{event.date}}

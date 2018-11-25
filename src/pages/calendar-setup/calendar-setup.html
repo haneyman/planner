@@ -1,0 +1,29 @@
+<!--
+  Generated template for the CalendarSetupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Calendar Setup</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+        <ion-item *ngFor="let cal of calendars" tappable>
+            <button ion-button icon-only item-start clear (click)="addEvent(cal)">
+                <ion-icon name="add"></ion-icon>
+            </button>
+            {{ cal.name }}
+            <p>{{ cal.type }}</p>
+            <button ion-button icon-only item-end clear (click)="openCal(cal)">
+                <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-list>
+</ion-content>

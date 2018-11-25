@@ -6,16 +6,98 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Calendar</ion-title>
-      <ion-buttons right>
-          <button ion-button clear (click)="showSettings()">Setup</button>
-      </ion-buttons>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Calendar</ion-title>
+        <ion-buttons right>
+            <button ion-button clear (click)="showSettings()">Setup</button>
+        </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <ion-toolbar *ngIf="1==1" class="header-toolbar">
+        <ion-item>
+            <ion-range min="1" max="3" step="1" snaps [(ngModel)]="detailLevel">
+                <ion-icon small range-left name="list"></ion-icon>
+                <ion-icon range-right name="apps"></ion-icon>
+            </ion-range>
+        </ion-item>
+    </ion-toolbar>
+
+
+    <ion-grid *ngIf="detailLevel===1" >
+        <div *ngFor="let ev of events">
+            <ion-row  *ngIf="ev.startDiffDays < 365">
+                <ion-col col-8>
+                    {{ ev.title }}
+                </ion-col>
+                <ion-col col-4>
+                    <span *ngIf="ev.startDate"> {{ ev.startDate | slice:0:10}} </span>
+                    <!--<span *ngIf="ev.startDate != ev.endDate">- {{ ev.endDate | slice:0:10 }}</span>-->
+                    <!--<span *ngIf="ev.startDate"> {{ ev.startDate | date: 'shortDate'}} </span>-->
+                  <!-- - <span *ngIf="ev.endDate">{{ ev.endDate | date: 'shortDate'}}</span>-->
+                </ion-col>
+                <hr/>
+            </ion-row>
+        </div>
+
+        <!--
+        <ion-col col-12>
+            {{ ev.location }}
+        </ion-col>
+-->
+    </ion-grid>
+
+    <!--
+        <ion-card *ngIf="detailLevel===2" *ngFor="let ev of events">
+            <ion-card-header>
+                {{ ev.title }}
+            </ion-card-header>
+            <ion-card-content>
+                <ion-list no-lines>
+                    <ion-item>
+                        <ion-icon name="calendar"></ion-icon> Start: {{ ev.startDate }}
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="calendar"></ion-icon> End: {{ ev.endDate }}
+                    </ion-item>
+                    <ion-item *ngIf="ev.location">
+                        <ion-icon name="locate"></ion-icon> {{ ev.location }}
+                    </ion-item>
+                </ion-list>
+            </ion-card-content>
+        </ion-card>
+    -->
+
+<div *ngIf="detailLevel > 1">
+    <div   *ngFor="let ev of events">
+        <div  *ngIf="ev.startDiffDays < 365">
+            <div class="calendar-day-header">
+                {{ev.startDateObject | date: 'fullDate'}}
+            </div>
+            <ion-card>
+                <ion-card-header>
+                    {{ ev.title }}
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-list no-lines>
+                        <ion-item *ngIf="!ev.allDay">
+                            {{ ev.startDateObject | date: 'shortTime' }}
+                            - {{ ev.endDateObject | date: 'shortTime' }}
+                        </ion-item>
+                        <ion-item *ngIf="ev.location && detailLevel===3">
+                            {{ ev.location }}
+                        </ion-item>
+                        <ion-item *ngIf="ev.notes && detailLevel===3">
+                            {{ ev.notes }}
+                        </ion-item>
+                    </ion-list>
+                </ion-card-content>
+            </ion-card>
+        </div>
+    </div>
+</div>
 
 </ion-content>
