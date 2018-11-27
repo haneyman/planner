@@ -16,4 +16,17 @@
 <ion-content padding>
     <button ion-button  (click)="clearStorage()">Clear Storage</button>
 
+    <div style="background-color: black;overflow-y:scroll;font-size: smaller;height: 300px;padding: 10px">
+        <div *ngFor="let msg of consoleMessages" style="color: lawngreen">
+            --{{msg}}
+        </div>
+    </div>
+
+<!--
+    <ul>
+        <ion-list *ngFor="let msg of consoleMessages">
+            <ion-item>{{msg}}</ion-item>
+        </ion-list>
+    </ul>
+-->
 </ion-content>

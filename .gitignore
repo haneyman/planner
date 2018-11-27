@@ -79,3 +79,11 @@ typings/
 /resources/
 /platforms/
 /plugins/
+
+.js
+.map
+/src/*/*/*.js.map
+/src/*/*.js.map
+/src/*/*/*.js
+/src/*/*.js
+/resources/ios/splash/*.png

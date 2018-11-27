@@ -43,9 +43,9 @@ export class PtoPage {
     loadData() {
         this.storage.get(GlobalsProvider.STORAGE_KEY_PTO_WEEKS).then((val) => {
             if (val) {
-                console.log('loadFromDB() complete, data found.');
+                this.globals.con('loadFromDB() complete, data found.');
                 this.weeks = JSON.parse(val);
-                // console.log('loadFromDB val:', val);
+                // this.globals.con('loadFromDB val:', val);
                 if (this.weeks.length > 0) {
                     for (let week of this.weeks) {
                         week.showNote = (week.note && week.note.length > 0);
@@ -56,7 +56,7 @@ export class PtoPage {
                 this.globals.ptoSettings.hoursPerPeriod     = this.weeks[0].hoursEarn;
                 this.globals.ptoSettings.startingBalance    = this.weeks[0].startHours;
             } else {
-                console.log('loadFromDB() complete, no data found.');
+                this.globals.con('loadFromDB() complete, no data found.');
             }
         });
     };
@@ -78,7 +78,7 @@ export class PtoPage {
     */
 
     focusout(week) {
-        console.log("focusout for week", week);
+        this.globals.con("focusout for week", week);
         this.recalculateWeeks();
     }
 
@@ -92,7 +92,7 @@ export class PtoPage {
     }
 
     recalculateWeek(week, prevWeek) {
-        // console.log('hours used:' + week.hoursUsed);
+        // this.globals.con('hours used:' + week.hoursUsed);
         if (prevWeek) {
             week.startHours = prevWeek.endHours;
         }
@@ -106,7 +106,7 @@ export class PtoPage {
 
         /*
             week.diffFromMax = 0;
-            // console.log('hours end:' + week.endHours);
+            // this.globals.con('hours end:' + week.endHours);
             if (week.diffFromMax <= 0)
               return "danger";
             if (week.diffFromMax < 40)
@@ -139,7 +139,7 @@ export class PtoPage {
     }
 
     initializeData() {
-        console.log("initializing data...");
+        this.globals.con("initializing data...");
         this.weeks = [];
         let week: any = {};
         let prevWeek: any = null;

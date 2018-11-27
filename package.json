@@ -64,11 +64,10 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-calendar": {
-        "CALENDAR_USAGE_DESCRIPTION": " "
+        "CALENDAR_USAGE_DESCRIPTION": "Displays your calendar appointments so you can plan your events. "
       }
     },
     "platforms": [
-      "android",
       "ios"
     ]
   }

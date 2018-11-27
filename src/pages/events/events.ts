@@ -29,12 +29,12 @@ export class EventsPage {
     }
 
     buttonAddEvent(type) {
-        console.log("adding an event of type:" + type);
+        this.globals.con("adding an event of type:" + type);
         this.events.push({title: null, note: null, date: null, type: type});
     }
 
     focusout(event) {
-        console.log('focusout of event ' + event.title)
+        this.globals.con('focusout of event ' + event.title)
         this.saveToDB();
     }
 
@@ -45,10 +45,10 @@ export class EventsPage {
     loadData() {
         this.storage.get(GlobalsProvider.STORAGE_KEY_EVENTS).then((val) => {
             if (val) {
-                console.log('events.ts loadData() complete, data found.');
+                this.globals.con('events.ts loadData() complete, data found.');
                 let events = JSON.parse(val);
             } else {
-                console.log('events.ts loadFromDB() complete, no data found.');
+                this.globals.con('events.ts loadFromDB() complete, no data found.');
             }
         });
     };

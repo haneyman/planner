@@ -35,7 +35,7 @@ export class PtoSettingsPage {
   }
 
   ionViewWillLeave() {
-    // console.log("starting date:" + this.startingDate);
+    // this.globals.con("starting date:" + this.startingDate);
     this.globals.ptoSettings.startingBalance    = this.startingBalance;
     this.globals.ptoSettings.startingDate       = this.startingDate;
     this.globals.ptoSettings.hoursPerPeriod     = this.hoursPerPeriod;

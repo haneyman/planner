@@ -24,7 +24,7 @@ export class CalendarSetupPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CalendarSetupPage');
+    this.globals.con('ionViewDidLoad CalendarSetupPage');
   }
 
 }

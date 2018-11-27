@@ -19,10 +19,10 @@ export class AboutPage {
 
             this.socialSharing.shareViaEmail('', 'App Feedback', ['support@planbreeze.com']).then((msg) => {
                 // Success!
-                console.log(msg + 'Message Sent Successfully');
+                this.globals.con(msg + 'Message Sent Successfully');
             }).catch((err) => {
                 // Error!
-                console.log(err + 'Message not Sent Successfully');
+                this.globals.con(err + 'Message not Sent Successfully');
             });
 
         }).catch(() => {

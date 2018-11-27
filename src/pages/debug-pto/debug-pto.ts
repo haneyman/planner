@@ -17,18 +17,22 @@ import {GlobalsProvider} from "../../providers/globals/globals";
 })
 export class DebugPtoPage {
 
+    consoleMessages: any;
+
   constructor(public navCtrl: NavController,
               public storage: Storage,
+              public globals: GlobalsProvider,
               public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DebugPtoPage');
+    this.globals.con('ionViewDidLoad DebugPtoPage');
+    this.consoleMessages = this.globals.consoleMessages;
   }
 
     clearStorage() {
         this.storage.remove(GlobalsProvider.STORAGE_KEY_PTO_WEEKS).then((val) => {
-            console.log('loadFromDB val:', val);
+            this.globals.con('loadFromDB val:', val);
         });
         // this.appCtrl.getRootNav().setRoot(yourcomponent);
         window.location.reload()

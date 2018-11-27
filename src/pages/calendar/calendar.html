@@ -7,6 +7,9 @@
 <ion-header>
 
     <ion-navbar>
+        <ion-buttons left>
+            <button ion-button clear (click)="test()">test</button>
+        </ion-buttons>
         <ion-title>Calendar</ion-title>
         <ion-buttons right>
             <button ion-button clear (click)="showSettings()">Setup</button>
@@ -27,14 +30,17 @@
     </ion-toolbar>
 
 
+
     <ion-grid *ngIf="detailLevel===1" >
         <div *ngFor="let ev of events">
             <ion-row  *ngIf="ev.startDiffDays < 365">
-                <ion-col col-8>
+                <ion-col col-6>
                     {{ ev.title }}
                 </ion-col>
-                <ion-col col-4>
-                    <span *ngIf="ev.startDate"> {{ ev.startDate | slice:0:10}} </span>
+                <ion-col col-6>
+                    <span *ngIf="ev.startDate  && ev.allDay"> {{ ev.startDate | date: 'mediumDate'}} </span>
+                    <span *ngIf="ev.startDate  && !ev.allDay"> {{ ev.startDate | date: 'medium'}} </span>
+                    <!--<span *ngIf="ev.startDate"> {{ ev.startDate | slice:0:10}} </span>-->
                     <!--<span *ngIf="ev.startDate != ev.endDate">- {{ ev.endDate | slice:0:10 }}</span>-->
                     <!--<span *ngIf="ev.startDate"> {{ ev.startDate | date: 'shortDate'}} </span>-->
                   <!-- - <span *ngIf="ev.endDate">{{ ev.endDate | date: 'shortDate'}}</span>-->
@@ -75,7 +81,7 @@
     <div   *ngFor="let ev of events">
         <div  *ngIf="ev.startDiffDays < 365">
             <div class="calendar-day-header">
-                {{ev.startDateObject | date: 'fullDate'}}
+                {{ev.startDate | date: 'fullDate'}}
             </div>
             <ion-card>
                 <ion-card-header>
@@ -84,8 +90,8 @@
                 <ion-card-content>
                     <ion-list no-lines>
                         <ion-item *ngIf="!ev.allDay">
-                            {{ ev.startDateObject | date: 'shortTime' }}
-                            - {{ ev.endDateObject | date: 'shortTime' }}
+                            {{ ev.startDate | date: 'shortTime' }}
+                            - {{ ev.endDate | date: 'shortTime' }}
                         </ion-item>
                         <ion-item *ngIf="ev.location && detailLevel===3">
                             {{ ev.location }}
@@ -99,5 +105,9 @@
         </div>
     </div>
 </div>
-
+<!--
+<ion-footer>
+    Events: {{events.length}}
+</ion-footer>
+-->
 </ion-content>
