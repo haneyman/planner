@@ -34,9 +34,9 @@ export class GlobalsProvider {
           this.consoleMessages.push(message);
       }
       if (object)
-        console.debug(header + message, object);
+        console.log(header + message, object);
       else
-        console.debug(header + message);
+        console.log(header + message);
   }
 
 }

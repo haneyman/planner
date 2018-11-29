@@ -124,11 +124,13 @@ export class PtoPage {
             this.initializeData();
             for (let week of this.weeks) {
                 for (let prevWeek of prevWeeks) {
-                    if (week.startDate == prevWeek.startDate) {
-    //                    if (prevWeek.startDate)
-    //                        week.hoursUsed = prevWeek.hoursUsed;
-    //                    if (prevWeek.notes)
-    //                        week.notes = prevWeek.notes;
+                    if (moment(week.startDate).diff(moment(prevWeek.startDate)) === 0) {
+                        //overlay notes and hours used
+                        // this.globals.con("FOUND A PREV WEEK " + prevWeek.notes);
+                        if (prevWeek.hoursUsed)
+                           week.hoursUsed = prevWeek.hoursUsed;
+                        if (prevWeek.notes)
+                           week.notes = prevWeek.notes;
                     }
                 }
             }
@@ -145,7 +147,6 @@ export class PtoPage {
         let prevWeek: any = null;
 
         week.startDate = this.globals.ptoSettings.startingDate;
-        //week.startDate = new Date(this.globals.ptoSettings.startingDate + 'T00:00:00');
         week.startHours = this.globals.ptoSettings.startingBalance;
         week.hoursEarned = this.globals.ptoSettings.hoursPerPeriod;
 
