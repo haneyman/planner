@@ -43,7 +43,7 @@ export class PtoPage {
     loadData() {
         this.storage.get(GlobalsProvider.STORAGE_KEY_PTO_WEEKS).then((val) => {
             if (val) {
-                this.globals.con('loadFromDB() complete, data found.');
+                this.globals.con('pto.ts loadFromDB() complete, data found.');
                 this.weeks = JSON.parse(val);
                 // this.globals.con('loadFromDB val:', val);
                 if (this.weeks.length > 0) {
@@ -56,7 +56,7 @@ export class PtoPage {
                 this.globals.ptoSettings.hoursPerPeriod     = this.weeks[0].hoursEarn;
                 this.globals.ptoSettings.startingBalance    = this.weeks[0].startHours;
             } else {
-                this.globals.con('loadFromDB() complete, no data found.');
+                this.globals.con('pto.ts loadFromDB() complete, NO data found.');
             }
         });
     };
@@ -139,12 +139,12 @@ export class PtoPage {
     }
 
     initializeData() {
-        this.globals.con("initializing data...");
+        this.globals.con("pto.ts initializing data...");
         this.weeks = [];
         let week: any = {};
         let prevWeek: any = null;
 
-        week.startDate = moment(this.globals.ptoSettings.startingDate).toDate();
+        week.startDate = this.globals.ptoSettings.startingDate;
         //week.startDate = new Date(this.globals.ptoSettings.startingDate + 'T00:00:00');
         week.startHours = this.globals.ptoSettings.startingBalance;
         week.hoursEarned = this.globals.ptoSettings.hoursPerPeriod;
