@@ -33,17 +33,16 @@
 
     <ion-grid *ngIf="detailLevel===1" >
         <div *ngFor="let ev of events">
+            <!--<ion-row  >-->
             <ion-row  *ngIf="ev.startDiffDays < 365">
                 <ion-col col-6>
                     {{ ev.title }}
                 </ion-col>
                 <ion-col col-6>
+                    <!--<span *ngIf="ev.startDate  && ev.allDay"> {{ ev.startDate }} </span>-->
+                    <!--<span *ngIf="ev.startDate  && !ev.allDay"> {{ ev.startDate }} </span>-->
                     <span *ngIf="ev.startDate  && ev.allDay"> {{ ev.startDate | date: 'mediumDate'}} </span>
-                    <span *ngIf="ev.startDate  && !ev.allDay"> {{ ev.startDate | date: 'medium'}} </span>
-                    <!--<span *ngIf="ev.startDate"> {{ ev.startDate | slice:0:10}} </span>-->
-                    <!--<span *ngIf="ev.startDate != ev.endDate">- {{ ev.endDate | slice:0:10 }}</span>-->
-                    <!--<span *ngIf="ev.startDate"> {{ ev.startDate | date: 'shortDate'}} </span>-->
-                  <!-- - <span *ngIf="ev.endDate">{{ ev.endDate | date: 'shortDate'}}</span>-->
+                    <span *ngIf="ev.startDate  && !ev.allDay"> {{ ev.startDate | date: 'short'}} </span>
                 </ion-col>
                 <hr/>
             </ion-row>

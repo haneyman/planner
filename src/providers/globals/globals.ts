@@ -21,7 +21,7 @@ export class GlobalsProvider {
 
 
   constructor() {
-    // this.globals.con('Hello GlobalsProvider Provider');
+    // console.log('Hello GlobalsProvider Provider');
   }
 
   con(message, object?) {

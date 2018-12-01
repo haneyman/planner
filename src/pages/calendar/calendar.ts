@@ -56,25 +56,40 @@ export class CalendarPage {
             self.globals.calendars = val;
             // let promises = [];
             self.getCalendarsEvents().then(() => {
-                this.globals.con("sorting events after getCalendarsEvents()")
-
-                self.events.sort((a, b) => a.startDate.localeCompare(b.startDate));
+                this.globals.con("sorting events after getCalendarsEvents()");
+                //TODO: shouldn't have to do this, WTF?
+                setTimeout(function () {
+                    self.events.sort(self.sortEvents)
+                }, 100);
+                setTimeout(function () {
+                    self.events.sort(self.sortEvents)
+                }, 500);
+                // self.events.sort((a, b) => a.startDate.localeCompare(b.startDate));
             });
         });
     }
 
     test() {
         // this.events.sort((a, b) => a.startDate.localeCompare(b.startDate));
+        // this.globals.con('test button sorting...');
+        this.events.sort(this.sortEvents)
+/*
         this.globals.con('Dump of Events ' );
         for (event of this.events) {
             this.globals.con("_____________________________");
             for (let key in event) {
                 if (event.hasOwnProperty(key)) {
-                    /* useful code here */
+                    /!* useful code here *!/
                     this.globals.con('   ' + key + ': "' + event[key] + '"');
                 }
             }
         }
+*/
+        // this.globals.con('test button done.');
+    }
+
+    sortEvents(a, b) {
+        return a['startDate'] - b['startDate'];
     }
     getCalendarsEvents() {
         let promises = [];
@@ -96,11 +111,13 @@ export class CalendarPage {
     }
 
     getCalendarEvents(calendar) {
-        this.globals.con('getCalendarEvents() for calendar:"' + calendar.name + '" on platform ' + MyApp.platform);
+        this.globals.con('getCalendarEvents() for calendar:"' + calendar.name );
         let self = this;
+        // if (calendar.name !== "Calendar")
+        //     return;
         return new Promise((resolve, reject) => {
             if (MyApp.platform.is('ios')) {
-                this.globals.con('getCalendarEvents() for android for calendar:"' + calendar + '"');
+                this.globals.con('getCalendarEvents() for ios for calendar:"' + calendar + '"');
                 this.calendar.findAllEventsInNamedCalendar(calendar.name).then(data => {
                     this.globals.con('getCalendarEvents() findAllEventsInNamedCalendar completed for ' + calendar.name, " events:" + data.length);
                     if (data) {
@@ -136,29 +153,36 @@ export class CalendarPage {
         this.globals.con('about to supplementEvents');
         let self = this;
         for (event of events) {
-            this.globals.con('   supplementing event for ' + event['title'] );
             if (MyApp.platform.is('android')) {
                 event['startDate'] = new Date(event['dtstart']);
                 event['endDate'] = new Date(event['dtend']);
                 event['location'] = event['eventLocation'];
+            } else {
+                // this.globals.con("event start date:"  + event["startDate"]);
+                event['startDate'] = moment(event['startDate']).toDate();
+                event['endDate'] = moment(event['endDate']).toDate();
             }
             if (event['startDate']) {
-                // event['startYear'] = event['startDate'].substr(0, 4);
-                // event['startMonth'] = event['startDate'].substr(6, 2);
-                // event['startDay'] = event['startDate'].substr(8, 2);
-                // event['startDateObject'] = moment(event['startDate']).toDate();
-                event['startDiffDays'] = moment(event['startDate']).diff(moment(), "days");
+                let now = moment(new Date()); //todays date
+                let start = moment(event['startDate']); // another date
+                let duration = moment.duration(start.diff(now));
+                // console.log("DIFF---> now:" + now.toDate() + "  start:" + start.toDate() + "   duration:" + duration);
+                event['startDiffDays'] = duration.asDays();
             }
             if (event['endDate']) {
-                // event['endtYear'] = event['endDate'].substr(0, 4);
-                // event['endMonth'] = event['endDate'].substr(6, 2);
-                // event['endDay'] = event['endDate'].substr(8, 2);
-                // event['endDateObject'] = moment(event['endDate']).toDate();
-                event['endDiffDays'] = moment(event['endDate']).diff(moment(), "days");
+                let now = moment(new Date()); //todays date
+                let end = moment(event['endDate']); // another date
+                let duration = moment.duration(end.diff(now));
+                event['endDiffDays'] = duration.asDays();
             }
             event['durationMinutes'] = moment(event['startDate']).diff(moment(event['endDate']), "minutes");
             event['allDay'] = (event['durationMinutes'] === -1439 || event['durationMinutes'] === -1440);//ios android, W
             // this.globals.con('supplementEvents() complete, event: ' + event['title']);
+            // self.globals.con('   supplemented event title:' + event['title']
+            //     + "  location:" + event['location'] + "  notes:" + event['notes']
+            //     + "  allDay:" + event['allDay']
+            //     + "  startDiffDays:" + event['startDiffDays']
+            //     + "  endDiffDays:" + event['endDiffDays']);
             self.events.push(event);
         }
         // this.events.sort((a, b) => a.startDate.localeCompare(b.startDate));
