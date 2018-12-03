@@ -55,8 +55,8 @@
       <ion-col col-2>{{week.startHours}} h<br/> {{week.startDays}} d</ion-col>
       <ion-col col-2><ion-input class="input-hours-used"
                                 [(ngModel)]="week.hoursUsed" name="hoursUsed" type="number"
-                                (focusout)="focusout(week)"
-                                (focusin)="focusin(week)">
+                                (focusout)="focusoutUsed(week)"
+                                (focusin)="focusinUsed(week)">
                     </ion-input> </ion-col>
       <ion-col col-2>{{week.hoursEarned}} h</ion-col>
       <ion-col col-2>{{week.endHours}} h <br/> {{week.endDays}} d
@@ -76,13 +76,14 @@
       </ion-col>
 -->
 
-      <ion-col class="col-notes" *ngIf="week.showNote || week.notes" col-12
-               >
+      <ion-col class="col-notes" *ngIf="week.showNote || week.notes" col-12>
         <ion-item class="item-notes" [ngClass]="(i%2 == 0) ? 'stripe' : ''">
         <!--<ion-label>Notes</ion-label>-->
         <!--<ion-input placeholder="notes" style="border: #2d2d2d solid 1px" type="text"-->
         <ion-input class="input-notes" placeholder="Notes"  type="text"
-                   (focusout)="focusout(week)"   [(ngModel)]="week.notes" name="notes">
+                   (focusout)="focusoutNote(week)"
+                   (focusin)="focusinNote(week)"
+                   [(ngModel)]="week.notes" name="notes">
         </ion-input>
         </ion-item>
       </ion-col>

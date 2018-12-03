@@ -3,7 +3,7 @@
     <name>PlanBreeze</name>
     <description>PlanBreeze - Makes planning a breeze.</description>
     <author email="support@planbreeze.com" href="http://planbreeze.com/">Kopasetic Software</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://10.0.0.65:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

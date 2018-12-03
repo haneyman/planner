@@ -47,9 +47,6 @@ export class PtoPage {
                 this.weeks = JSON.parse(val);
                 // this.globals.con('loadFromDB val:', val);
                 if (this.weeks.length > 0) {
-                    for (let week of this.weeks) {
-                        week.showNote = (week.note && week.note.length > 0);
-                    }
                     this.recalculateWeeks();
                 }
                 this.globals.ptoSettings.startingDate       = this.weeks[0].startDate;
@@ -77,15 +74,41 @@ export class PtoPage {
       }
     */
 
-    focusout(week) {
-        this.globals.con("focusout for week", week);
+    focusoutUsed(week) {
+        this.globals.con("focusout for week");
         this.recalculateWeeks();
     }
 
-    focusin(week) {
+    focusinUsed(week) {
+        console.log('focusinUsed');
         week.showNote = true;
+        this.closeEmptyNotes(week);
         if (week.hoursUsed === 0)
             week.hoursUsed = "";
+    }
+
+
+    focusinNote(week) {
+        console.log('focusinNote');
+/*
+        setTimeout(function () {
+            console.log('focusinNote showNote=true');
+            week.showNote = true;
+        }, 100);
+*/
+
+    }
+
+    focusoutNote(week) {
+        this.globals.con("focusout for note");
+        // this.recalculateWeeks();
+    }
+
+    closeEmptyNotes(curWeek) {
+        for (let week of this.weeks) {
+            if (week.startDate != curWeek.startDate)
+                week.showNote = (week.note && week.note.length > 0);
+        }
     }
 
     recalculateWeeks() {
@@ -109,7 +132,7 @@ export class PtoPage {
         week.startDays = Math.round(week.startHours / 8 * 100) / 100;
         week.endHours = Math.round((week.startHours - week.hoursUsed + week.hoursEarned) * 100) / 100;
         week.endDays = Math.round(week.endHours / 8 * 100) / 100;
-
+        // week.showNote = (week.note && week.note.length > 0);
         /*
             week.diffFromMax = 0;
             // this.globals.con('hours end:' + week.endHours);
