@@ -37,12 +37,12 @@
         </ion-buttons>-->
         <ion-grid class="header-grid">
             <ion-row class="header-row">
-                <ion-col col-3 style="width: 50px">Period</ion-col>
+                <ion-col col-3 style="width: 50px" offset-1="">Period</ion-col>
                 <ion-col col-2>Start</ion-col>
-                <ion-col col-2>Used</ion-col>
-                <ion-col col-2>Earned</ion-col>
-                <ion-col col-2>End</ion-col>
-                <ion-col col-1></ion-col>
+                <ion-col col-2> - Used</ion-col>
+                <ion-col col-2>+ Earn</ion-col>
+                <ion-col col-2>= End</ion-col>
+                <!--<ion-col col-1></ion-col>-->
             </ion-row>
         </ion-grid>
     </ion-toolbar>
@@ -51,21 +51,24 @@
     <ion-row class="row" *ngFor="let week of weeks; let i = index"
              [ngClass]="(i%2 == 0) ? 'stripe' : ''">
 
-      <ion-col col-3>{{week.startDate | date: 'shortDate'}} -<br/>{{week.endDate | date: 'shortDate' }}</ion-col>
+      <ion-col col-3 offset-1>{{week.startDate | date: 'shortDate'}} -<br/>{{week.endDate | date: 'shortDate' }}</ion-col>
       <ion-col col-2>{{week.startHours}} h<br/> {{week.startDays}} d</ion-col>
       <ion-col col-2><ion-input class="input-hours-used"
                                 [(ngModel)]="week.hoursUsed" name="hoursUsed" type="number"
-                                (focusout)="focusout(week)">
+                                (focusout)="focusout(week)"
+                                (focusin)="focusin(week)">
                     </ion-input> </ion-col>
-      <ion-col col-2>{{week.hoursEarned}}</ion-col>
+      <ion-col col-2>{{week.hoursEarned}} h</ion-col>
       <ion-col col-2>{{week.endHours}} h <br/> {{week.endDays}} d
         <!--<ion-icon name="add-circle"  (click)="week.showNote=!week.showNote" ></ion-icon>-->
         <!--<button ion-button small  (click)="week.showNote=!week.showNote" >+ Note</button>-->
       </ion-col>
+<!--
       <ion-col col-1>
         <ion-icon class="chatbox-icon" name="chatboxes"  *ngIf="!week.notes" (click)="week.showNote=!week.showNote" ></ion-icon>
-        <!--<ion-icon name="add-circle"  (click)="week.showNote=!week.showNote" ></ion-icon>-->
+        &lt;!&ndash;<ion-icon name="add-circle"  (click)="week.showNote=!week.showNote" ></ion-icon>&ndash;&gt;
       </ion-col>
+-->
 
 <!--
       <ion-col col-12>

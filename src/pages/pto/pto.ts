@@ -82,6 +82,12 @@ export class PtoPage {
         this.recalculateWeeks();
     }
 
+    focusin(week) {
+        week.showNote = true;
+        if (week.hoursUsed === 0)
+            week.hoursUsed = "";
+    }
+
     recalculateWeeks() {
         let prevWeek = null;
         for (let week of this.weeks) {
